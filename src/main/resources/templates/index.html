@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <title>Pizzeria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+   <link href='http://fonts.googleapis.com/css?family=Basic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="bootstrap.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+</head>
+    
+<body data-spy="scroll" data-target="#paseknawigacji">
+       <!-------------------------nawigacja---------------------------->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-da rk fixed-top">
+        <a class="navbar-brand" href="#" th:href="@{/}"><img src="play.svg"  alt="play"/><span> Pizzeria    </span></a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#paseknawigacji">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+     <div class="collapse navbar-collapse" id="paseknawigacji">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="#zamowienie">Pizza</a>
+            </li>
+           
+              <li class="nav-item">
+            <a class="nav-link" href="#contact">Kontakt</a>
+            </li>
+         </ul>    
+    </div>
+    </nav>
+  
+<!-------------------------------------startowa-------------------------------->
+<div id="startowa">
+ 
+   
+    
+  <!--- ----------------------------------landingpage------------------------------> 
+<div class="landing">
+    <div class="startowa-wrap">
+        <div class="startowa-inner">
+          
+        </div>
+    </div>
+</div>
+    <div class ="caption text-center">
+    <h1>Pizzeria</h1>
+    <h2>Nowy wymiar smaku</h2>
+        
+    </div>
+
+    
+ 
+
+<!--- ------------------------------landingpagestop------------------------------>  
+    </div>
+    
+<!--- ----------------------------------o nas -------------------------------->
+    <div id="zamowienie" class="offset">
+        <div class="col-12 narrow text-center">
+        <h1>Pizza</h1>
+        </div>
+          <div class="backet">
+              <h2>Twoje zamówienie:</h2>
+              <div th:if="not ${orderList.isEmpty()}" th:each="order:${orderList}" >
+                  <b th:text="${order.pizza.name + ' ' +order.doughType.doughType+ ' '+order.sizePizza.size+' '}">
+                  </b>
+                  <a th:href="@{|/usun/${#strings.toLowerCase(order.pizza.name)}/${order.id}|}"><img height="15px" width="20px" src="/x.png"></a>
+              </div>
+              <div th:if="not ${orderList.isEmpty()}">
+                  <a href="#" th:href="@{/klient}" class="btn btn-outline-light btn-lg"  > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </a>
+              </div>
+            </div>
+      <div   th:each="pizza:${pizzaList}">
+        <div   class="row text-center">
+        <div class="col-md-4">
+            <div class="container">
+               <h2 th:text="${pizza.id}+'. '+ ${pizza.name}">1. MARGHERITTA</h2>
+                <b th:each="topping:${pizza.getToppings()}">
+                    <b th:text="${topping.name} + ' '">sos pomidorowy, ser, oregano, Baru</b>
+                </b>
+                <br/>
+                <img th:src="@{${pizza.imageUrl}}" /><br/><br/>
+                    <a href="#" th:href="@{|/zamow/${#strings.toLowerCase(pizza.name)}|}" class="btn btn-outline-light btn-lg"  > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </a>
+            </div>
+            </div>
+        </div>
+       <!--
+            <div class="col-md-4">
+            <div class="container">
+                <h2>2. CAPRICIOSA</h2>
+                <p>sos pomidorowy, ser, szynka, pieczarki, oregano</p>
+                <img src="https://images.telepizza.com/vol/pl/images/content/productos/p2ca_c.png"/>
+                <br/><br/>
+               <button type="submit" class="btn btn-outline-light btn-lg" formmethod="POST" > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </button>
+        </div>
+             </div>
+        <div class="row text-center">
+        <div class="col-md-4">
+            <div class="container">
+               <h2>3. PARMA</h2>
+                <p>sos pomidorowy, ser, szynka</p>
+                <br/>
+                <img src="https://images.telepizza.com/vol/pl/images/content/productos/ppar_c.png"/>
+                <br/><br/>
+                  <button type="submit" class="btn btn-outline-light btn-lg" formmethod="POST" > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </button>
+            </div>
+            </div>
+            <div class="col-md-4">
+            <div class="container">
+                <h2>4. CAMPIONE</h2>
+                <p>sos pomidorowy, ser, szynka, kabanosy, boczek</p>
+                <img src="https://cdn.dagrasso.pl/static/product-images/3/6eaba06f-a4a8-11e1-bb60-005056a7f31b/15/medium/04-1.png"/>
+                <br/><br/>
+             <button type="submit" class="btn btn-outline-light btn-lg" formmethod="POST" > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </button>
+            </div>
+        </div>
+        </div>
+        <div class="row text-center">
+        <div class="col-md-4">
+            <div class="container">
+               <h2>5. DECORO</h2>
+                <p>sos pomidorowy, ser, szynka, pieczarki, papryka</p>
+                <img src="https://publish.simplysmart.pl/images/products-plus/gallery/2082/5376.jpg"/>
+                <br/><br/>
+                  <button type="submit" class="btn btn-outline-light btn-lg" formmethod="POST" > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </button>
+            </div>
+            </div>
+            <div class="col-md-4">
+            <div class="container">
+                <h2>6. Napoletana</h2>
+                <p>sos pomidorowy, ser, salami, oliwki zielone, papryka</p>
+                <img src="https://format-com-cld-res.cloudinary.com/image/private/s--fLN2OCx---/c_crop,h_1422,w_1422,x_26,y_0/c_fill,g_center,h_1140,w_1140/a_auto,fl_keep_iptc.progressive,q_95/v1/e61c438b9cbab568a56bec692c0e7603/AnthonyMangieri_UnaPizzza.jpg"/>
+                <br/><br/>
+                   <button type="submit" class="btn btn-outline-light btn-lg" formmethod="POST" > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </button>
+            </div>
+        </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+            <div class="container">
+                <h2>7. Niestandardowa</h2>
+                <p>Składniki do wyboru</p>
+                <img src="https://purepng.com/public/uploads/large/purepng.com-pizzafood-pizza-941524625790xzrxh.png"/>
+                <br/><br/>
+                   <button type="submit" class="btn btn-outline-light btn-lg" formmethod="POST" > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </button>
+                </div>
+            </div>
+        </div>
+-->
+        </div>
+         </div>
+<!--- -------------------------Modalne------------------------------------------>  
+   
+<!--- ----------------------------------contact --------------------------------------->
+      <div id="contact" class="offsetcontact">
+        <footer>
+          <div class="row justify-content-center">
+            
+            <div class="col-md-12 text-center">
+                <h2><strong>Skontaktuj sie z nami</strong> </h2>
+                <p>39-300 ZMielec<br>ul. Mickiewicza 12<br>Tel.: 555-444-333 </p>
+                <p><a href="tel:515494230"><i class="fas fa-phone"></a></i></p>
+                <a href="mailto:info@crossfitmielec.com.pl">info@pizza.com.pl</a>
+                <p><a href="https://pl-pl.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://twitter.com/?lang=pl" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></p>
+
+              </div>
+            </div>
+          
+          <div id="mapy">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20478.397804339995!2d19.926553195909612!3d50.09003643450879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb467c85af785ef03!2sDa%20Grasso!5e0!3m2!1spl!2spl!4v1578231774315!5m2!1spl!2spl" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                          
+</div>
+          
+          </footer>
+        
+</div>
+ <!--- ----------------------------Okno modalne------------------------------------>         
+          
+             <div id="Margheritta" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                    <input type="text" name="rodzajPizzy" value="MARGHERITTA" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                        <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div id="Capriciosa" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="rodzajPizzy" value="CAPRICIOSA" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                        <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div id="Parma" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="rodzajPizzy" value="PARMA" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                        <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Campione" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="rodzajPizzy" value="CAMPIONE" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                       <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Decoro" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="rodzajPizzy" value="DECORO" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                       <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Napoletana" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="rodzajPizzy" value="NAPOLETANA" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                      <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <div id="Niestandardowa" class="modal fade" role="dialog" style="display:none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                             <h4 class="modal-title">Wybór pizzy</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                        </button>
+                     
+                    </div>
+                    <div .class="modal-body">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="rodzajPizzy" value="NIESTANDARDOWA" readonly><br/>
+                    <label>Grubość ciasta</label><br/>
+                        <p >Cienkie <input type="radio" name="ciasto" value="Cienkie"></p>
+                        <p >Średnie <input type="radio" name="ciasto" value="Średnie"></p>
+                        <p >Grube <input type="radio" name="ciasto" value="Grube"></p>
+                        <br/>
+                    <label>Rozmiar pizzy</label><br/>
+                      <p >Mała (30cm) <input type="radio" name="rozmiar" value="Mała 30 cm"></p>
+                        <p >Średnia (40 cm) <input type="radio" name="rozmiar" value="Średnia 40 cm"></p>
+                        <p >Duża (60 cm) <input type="radio" name="rozmiar" value="Duża 60 cm"></p>
+                        <br/>
+                        
+                        <p>Wybierz dodatki </p>
+                        Sos pomidorowy <input type="checkbox" name="dodatek" value=1 checked>
+                        <br/>
+                        Papryka x1  <input type="radio" name="papryka1" value="8">
+                         x2 <input type="radio" name="papryka2" value=8><br/>
+                        Ser x1  <input type="radio" name="ser1" value=2>
+                         x2 <input type="radio" name="ser2" value=2><br/>
+                        Oregano x1  <input type="radio" name="oregano1" value=3>
+                         x2 <input type="radio" name="oregano2" value=3 ><br/>
+                        Szynka x1  <input type="radio" name="szynka1" value=4>
+                         x2 <input type="radio" name="szynka2" value=4 ><br/>
+                        Pieczarki x1  <input type="radio" name="pieczarki1" value=5>
+                         x2 <input type="radio" name="pieczarki2" value=5 ><br/>
+                        Kabanosy x1  <input type="radio" name="kabanosy1" value=6> 
+                        x2 <input type="radio" name="kabanosy2" value=6 ><br/>
+                        Boczek x1  <input type="radio" name="boczek1" value=7>
+                         x2 <input type="radio" name="boczek2" value=7 ><br/>
+                        Salami x1  <input type="radio" name="salami1" value=9>
+                         x2 <input type="radio" name="salami2" value=9 ><br/>
+                        Oliwki zielone x1  <input type="radio" name="oliwki1" value=10>
+                         x2 <input type="radio" name="oliwki2" value=10><br/>
+                        <br/>
+                        
+                        <button type="submit" name="login_button" id="login_button" class="btn btn-warning">Dalej</button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+          
+
+
+            
+
+
+<!--- ----------------------------------## --------------------------------------->
+ <!--- ----------------------SKRYPTY DO BOOTSTRAPA -------------------------------->
+
+</body>
+</html>

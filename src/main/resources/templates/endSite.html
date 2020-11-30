@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizzeria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Basic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-
+    <script src="bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+</head>
+
+<body data-spy="scroll" data-target="#paseknawigacji">
+<!-------------------------nawigacja---------------------------->
+<nav class="navbar navbar-expand-lg navbar-dark bg-da rk fixed-top">
+    <a class="navbar-brand" href="#" th:href="@{/}"><img src="play.svg" alt="play"/><span> Pizzeria    </span></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#paseknawigacji">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="paseknawigacji">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#zamowienie">Pizza</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Kontakt</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-------------------------------------startowa-------------------------------->
+<div id="startowa">
+
+
+
+    <!--- ----------------------------------landingpage------------------------------>
+
+
+
+
+
+    <!--- ------------------------------landingpagestop------------------------------>
+</div>
+
+<!--- ----------------------------------o nas -------------------------------->
+<div id="zamowienie" class="offset">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <div class="container">
+                <div class="col-md-12">
+                    <h1>Twoje zamówienie zostało poprawnie dodane !</h1><br/><br/>
+                    <a href="#" th:href="@{/}" class="btn btn-outline-light btn-lg"  > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Strona główna </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--- -------------------------Modalne------------------------------------------>
+
+    <!--- ----------------------------------contact --------------------------------------->
+    <div id="contact" class="offsetcontact">
+        <footer>
+            <div class="row justify-content-center">
+
+                <div class="col-md-12 text-center">
+                    <h2><strong>Skontaktuj sie z nami</strong> </h2>
+                    <p>39-300 Mielec<br>ul. Mickiewicza 12<br>Tel.: 555-444-333 </p>
+                    <p><a href="tel:515494230"><i class="fas fa-phone"></a></i></p>
+                    <a href="mailto:info@crossfitmielec.com.pl">info@pizza.com.pl</a>
+                    <p><a href="https://pl-pl.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                        <a href="https://twitter.com/?lang=pl" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></p>
+
+                </div>
+            </div>
+
+            <div id="mapy">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20478.397804339995!2d19.926553195909612!3d50.09003643450879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb467c85af785ef03!2sDa%20Grasso!5e0!3m2!1spl!2spl!4v1578231774315!5m2!1spl!2spl" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+            </div>
+
+        </footer>
+
+    </div>
+    <!--- ----------------------------Okno modalne------------------------------------>
+
+
+
+
+
+
+    <!--- ----------------------------------## --------------------------------------->
+    <!--- ----------------------SKRYPTY DO BOOTSTRAPA -------------------------------->
+
+</body>
+</html>
