@@ -1,4 +1,4 @@
-package pl.pizzeria.controller;
+package pl.pizzeria.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

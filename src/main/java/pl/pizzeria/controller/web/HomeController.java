@@ -1,4 +1,4 @@
-package pl.pizzeria.controller;
+package pl.pizzeria.controller.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
