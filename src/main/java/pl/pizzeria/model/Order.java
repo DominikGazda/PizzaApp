@@ -1,5 +1,6 @@
 package pl.pizzeria.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import pl.pizzeria.component.OrderStatus;
 
 import javax.persistence.*;
@@ -27,7 +28,7 @@ public class Order implements Serializable {
     @JoinColumn(name="client_id")
     private Client client;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     @JoinColumn(name = "waiter_id")
     private Waiter waiter;
 

@@ -1,5 +1,11 @@
 package pl.pizzeria.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,13 +26,13 @@ public class Pizza {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany
     @JoinTable(name = "pizza_toppings",
     joinColumns = {@JoinColumn(name = "pizzaId" , referencedColumnName = "id_pizza")},
     inverseJoinColumns = {@JoinColumn(name = "topping_id", referencedColumnName = "id_topping")})
     private List <Toppings>toppingsList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pizza", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "pizza")
     private List<MenuPizza>menuPizzaList = new ArrayList<>();
 
     public Pizza(){}

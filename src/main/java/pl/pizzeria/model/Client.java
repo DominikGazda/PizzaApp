@@ -1,5 +1,9 @@
 package pl.pizzeria.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,7 +23,7 @@ public class Client {
     @Column(nullable = false, name = "surname")
     private String clientSurname;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client")
     private List <Order> orders = new ArrayList<>();
 
     public Client(){}

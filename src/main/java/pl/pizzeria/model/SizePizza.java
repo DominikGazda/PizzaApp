@@ -1,5 +1,9 @@
 package pl.pizzeria.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,7 @@ public class SizePizza {
     @Column(name = "topping_double_price")
     private double toppingDoublePrice;   //if double_toppings is true
 
-    @OneToMany(mappedBy = "sizePizza", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "sizePizza")
     private List<MenuPizza> menuPizzaList = new ArrayList<>();
 
     public SizePizza(){}

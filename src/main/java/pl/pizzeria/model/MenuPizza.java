@@ -1,5 +1,7 @@
 package pl.pizzeria.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -16,8 +18,9 @@ public class MenuPizza {
     @Column(name = "id_menu_pizza")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pizza_id")
+    //@JsonBackReference
     private Pizza pizza;
 
     @ManyToOne
@@ -28,8 +31,7 @@ public class MenuPizza {
     @JoinColumn(name = "dough_type_id")
     private DoughType doughType;
 
-    @OneToMany(mappedBy = "menuPizza", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "menuPizza")
     private List<Order> orders = new ArrayList<>();
 
     @Column(name="price")
