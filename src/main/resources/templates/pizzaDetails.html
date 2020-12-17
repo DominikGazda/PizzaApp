@@ -61,7 +61,7 @@
         <div class="col-md-12">
             <div class="container" th:each="pizza:${pizza}" th:object="${pizza}">
                      <h2 th:text="|Szczegóły dotyczące pizzy *{name}|">Szczegóły dotyczące pizzy </h2><br/>
-            <form action = "#" method="POST" th:action="@{|/zamow/${#strings.toLowerCase(pizza.name)}/szczegoly|}">
+            <form action = "#" method="POST" th:action="@{|/zamowienie/${#strings.toLowerCase(pizza.name)}/szczegoly|}">
               <h3>Wybierz rozmiar pizzy</h3>
               <input type="radio" name="size" value="mała"/> Mała<br/>
               <input type="radio" name="size" value="średnia"/> Średnia<br/>

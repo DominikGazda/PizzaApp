@@ -58,9 +58,9 @@
         <div class="col-md-12">
             <div class="container">
                 <div class="col-md-12">
-                    <a href="#" class="btn btn-primary btn-lg active" th:href="@{/zamowienia/panel(status = ${T(pl.pizzeria.component.OrderStatus).NEW.name()})}">NEW</a>
-                    <a href="#" class="btn btn-success btn-lg active" th:href="@{/zamowienia/panel(status = ${T(pl.pizzeria.component.OrderStatus).IN_PROGRESS.name()})}">IN PROGRESS</a>
-                    <a href="#" class="btn btn-danger btn-lg active" th:href="@{/zamowienia/panel(status = ${T(pl.pizzeria.component.OrderStatus).COMPLETE.name()})}">COMPLETE</a>
+                    <a href="#" class="btn btn-primary btn-lg active" th:href="@{/zamowienia/panel(status = ${T(pl.pizzeria.components.order.OrderStatus).NEW.name()})}">NEW</a>
+                    <a href="#" class="btn btn-success btn-lg active" th:href="@{/zamowienia/panel(status = ${T(pl.pizzeria.components.order.OrderStatus).IN_PROGRESS.name()})}">IN PROGRESS</a>
+                    <a href="#" class="btn btn-danger btn-lg active" th:href="@{/zamowienia/panel(status = ${T(pl.pizzeria.components.order.OrderStatus).COMPLETE.name()})}">COMPLETE</a>
                     <br/><br/>
                     <table class="table">
                         <thead>
@@ -84,9 +84,9 @@
                             <td th:text="${order.getWaiter().id}">Numer kelnera</td>
                             <td th:text="${order.getTableNumber()}">Numer stolika</td>
                             <td th:text="${order.getStatus()}">Status</td>
-                            <td th:if="${#strings.equals(order.status,T(pl.pizzeria.component.OrderStatus).NEW.name())}"><a href="#" th:href="@{|/zamowienia/panel/szczegoly/${order.id}|}" class="btn btn-outline-light btn-lg"  > Realizuj</a></td>
-                            <td th:if="${#strings.equals(order.status,T(pl.pizzeria.component.OrderStatus).IN_PROGRESS.name())}"><a href="#" th:href="@{|/zamowienia/panel/szczegoly/${order.id}|}" class="btn btn-outline-light btn-lg"  > Zakończ</a></td>
-                            <td th:if="${#strings.equals(order.status,T(pl.pizzeria.component.OrderStatus).COMPLETE.name())}"><button type="button" disabled class="btn btn-outline-light btn-lg" > Zakończono</button></td>
+                            <td th:if="${#strings.equals(order.status,T(pl.pizzeria.components.order.OrderStatus).NEW.name())}"><a href="#" th:href="@{|/zamowienia/panel/szczegoly/${order.id}|}" class="btn btn-outline-light btn-lg"  > Realizuj</a></td>
+                            <td th:if="${#strings.equals(order.status,T(pl.pizzeria.components.order.OrderStatus).IN_PROGRESS.name())}"><a href="#" th:href="@{|/zamowienia/panel/szczegoly/${order.id}|}" class="btn btn-outline-light btn-lg"  > Zakończ</a></td>
+                            <td th:if="${#strings.equals(order.status,T(pl.pizzeria.components.order.OrderStatus).COMPLETE.name())}"><button type="button" disabled class="btn btn-outline-light btn-lg" > Zakończono</button></td>
                         </tr>
                         </tbody>
                     </table>

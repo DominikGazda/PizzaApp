@@ -74,7 +74,7 @@
               <div th:if="not ${orderList.isEmpty()}" th:each="order:${orderList}" >
                   <b th:text="${order.pizza.name + ' ' +order.doughType.doughType+ ' '+order.sizePizza.size+' '}">
                   </b>
-                  <a th:href="@{|/usun/${#strings.toLowerCase(order.pizza.name)}/${order.id}|}"><img height="15px" width="20px" src="/x.png"></a>
+                  <a th:href="@{|/zamowienie/usun/${#strings.toLowerCase(order.pizza.name)}/${order.id}|}"><img height="15px" width="20px" src="/x.png"></a>
               </div>
               <div th:if="not ${orderList.isEmpty()}">
                   <a href="#" th:href="@{/klient}" class="btn btn-outline-light btn-lg"  > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </a>
@@ -90,7 +90,7 @@
                 </b>
                 <br/>
                 <img th:src="@{${pizza.imageUrl}}" /><br/><br/>
-                    <a href="#" th:href="@{|/zamow/${#strings.toLowerCase(pizza.name)}|}" class="btn btn-outline-light btn-lg"  > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </a>
+                    <a href="#" th:href="@{|/zamowienie/${#strings.toLowerCase(pizza.name)}|}" class="btn btn-outline-light btn-lg"  > <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/basket-1772932-1508786.png" id="backet"/> Zamów </a>
             </div>
             </div>
         </div>

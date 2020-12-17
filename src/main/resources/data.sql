@@ -3,9 +3,7 @@ INSERT INTO pizza  (id_pizza,name, image_url) VALUES (1,'MARGHERITTA','https://u
 (3,'PARMA', 'https://images.telepizza.com/vol/pl/images/content/productos/ppar_c.png'),
 (4,'CAMPIONE', 'https://cdn.dagrasso.pl/static/product-images/3/6eaba06f-a4a8-11e1-bb60-005056a7f31b/15/medium/04-1.png'),
 (5,'DECORO',  'https://publish.simplysmart.pl/images/products-plus/gallery/2082/5376.jpg'),
-(6,'NAPOLETANA', 'https://format-com-cld-res.cloudinary.com/image/private/s--fLN2OCx---/c_crop,h_1422,w_1422,x_26,y_0/c_fill,g_center,h_1140,w_1140/a_auto,fl_keep_iptc.progressive,q_95/v1/e61c438b9cbab568a56bec692c0e7603/AnthonyMangieri_UnaPizzza.jpg'),
-(7,'NIESTANDARDOWA', 'https://format-com-cld-res.cloudinary.com/image/private/s--fLN2OCx---/c_crop,h_1422,w_1422,x_26,y_0/c_fill,g_center,h_1140,w_1140/a_auto,fl_keep_iptc.progressive,q_95/v1/e61c438b9cbab568a56bec692c0e7603/AnthonyMangieri_UnaPizzza.jpg');
-
+(6,'NAPOLETANA', 'https://format-com-cld-res.cloudinary.com/image/private/s--fLN2OCx---/c_crop,h_1422,w_1422,x_26,y_0/c_fill,g_center,h_1140,w_1140/a_auto,fl_keep_iptc.progressive,q_95/v1/e61c438b9cbab568a56bec692c0e7603/AnthonyMangieri_UnaPizzza.jpg');
 INSERT INTO toppings (id_topping, topping_name, price) VALUES(1,'sos pomidorowy',3.5),
 (2,'ser',2),
 (3,'oregano',1.5),

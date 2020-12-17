@@ -5,7 +5,7 @@
     <title>Pizzeria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"></script>
@@ -61,7 +61,9 @@
                         <h1>Dane zamawiającego</h1><br/><br/>
                         <form action="#" th:action="@{/klient/dane}" method="POST" >
                             <div th:object="${client}">
+                            <p th:if="${#fields.hasErrors('clientName')}" th:errors="*{clientName}"></p>
                             <p>Imię <input type="text" name="imie" th:field="*{clientName}"></p>
+                            <p th:if="${#fields.hasErrors('clientSurname')}" th:errors="*{clientSurname}"></p>
                             <p>Nazwisko <input type="text" name="nazwisko" th:field="*{clientSurname}"></p>
                             <p>Numer stolika <input type="text" name="stolik" ></p>
                             <p>Numer kelnera <input type="text" name="kelner" th:value="${random}" readonly></p>

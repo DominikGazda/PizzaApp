@@ -72,7 +72,7 @@
                         <b th:text="'Nazwisko kelnera: '  + ${waiter.surname}">Imię :</b><br/>
                         <b th:text="'Numer stolika: '  + ${desk}">Imię :</b><br/>
                         <b th:text="'Data: '  + ${data}">Imię :</b><br/>
-                        <form action="#" th:action="@{/koniec/baza}" method="post" th:method="post">
+                        <form action="#" th:action="@{/zamowienie/koniec/baza}" method="post" th:method="post">
                             <input type="hidden" name="desk" th:value="${desk}" >
                             <input type="hidden" name="data" th:value="${data}" >
                             <div th:object="${client}">

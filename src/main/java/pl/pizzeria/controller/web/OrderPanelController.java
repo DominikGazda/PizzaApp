@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.pizzeria.component.OrderStatus;
-import pl.pizzeria.model.Order;
-import pl.pizzeria.repository.OrderRepository;
+import pl.pizzeria.components.order.OrderStatus;
+import pl.pizzeria.components.order.Order;
+import pl.pizzeria.components.order.OrderRepository;
 import java.util.List;
 
 @Controller
