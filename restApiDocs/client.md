@@ -1,7 +1,7 @@
 # Client Rest Documentation
 
 ## Table of contents
-* [Show client](#show-client)
+* [Show client](#show-clients)
 * [Save client](#save-client)
 * [Get client by id](#get-client-by-id)
 * [Update client by id](#update-client-by-id)
