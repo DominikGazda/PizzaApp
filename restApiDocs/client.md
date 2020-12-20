@@ -9,9 +9,9 @@
 * [Get client orders](#get-client-orders)
 * [Get client order by id](#get-client-order-by-id)
 
-## Show client
+## Show clients
 ----
-  Returns json data about a single user.
+  Returns json data about all users
 
 * **URL**
   api/clients/
