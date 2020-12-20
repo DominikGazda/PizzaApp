@@ -1,5 +1,5 @@
 
-# Client Rest Documentation
+# Dough Type Rest Documentation
 
 ## Table of contents
 * [Show dough Types](#show-dough-types)
