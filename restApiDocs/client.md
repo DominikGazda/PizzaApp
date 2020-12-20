@@ -67,13 +67,11 @@ none
 * **Error Response:**
 
   * **Code:** 400 Bad Request (if user has id)
-  * **Message:** ```User cannot have id ```
-
+    *  Message: ```User cannot have id ```
   * **Code:** 400 Bad Request  (if empty clientName field)
-  * **Message:** ```Name cannot be empty```
-
+    * Message: ```Name cannot be empty```
   * **Code:** 400 Bad Request (if empty clientSurname field)
-  * **Message:** ```Surname cannot be empty```
+    * Message: ```Surname cannot be empty```
  
 ## Get client by id
 ----
@@ -100,7 +98,7 @@ none
 * **Error Response:**
 
   * **Code:** 404 Bad Request (if user with provided id doesn't exist)
-  * **Message:** ``` Cannot find client with provided id ``` 
+    * Message: ``` Cannot find client with provided id ``` 
 ## Update client by id
 ----
   Update single user data
@@ -134,10 +132,10 @@ none
 * **Error Response:**
 
   * **Code:** 400 Bad Request (if user has id different from id in path variable)
-  * **Message:** ```Updated object must have same id as path variable ```
+    * Message: ```Updated object must have same id as path variable ```
   * **Code:** 400 Bad Request  (if id is null)
-  * **Message:** ```Updated object must have an id```
-
+    * Message: ```Updated object must have an id```
+  
 ## Delete client by id
 ----
   Delete single user from database
@@ -163,8 +161,8 @@ none
 * **Error Response:**
 
   * **Code:** 404 Not found (if user with provided id doesn't exist)
-  * **Message:** ```Cannot find client with provided id ```
-  <br/>
+    * Message: ```Cannot find client with provided id ```
+
 ## Get client orders
 ----
   Returns orders assigned to client with provided id
@@ -191,7 +189,7 @@ none
 * **Error Response:**
 
   * **Code:** 404 Not found (if user with provided id doesn't exist)
-  * **Message:** ``` Cannot find client with provided id ``` 
+    * Message: ``` Cannot find client with provided id ``` 
 
 ## Get client order by id
 ----
@@ -220,9 +218,8 @@ none
 * **Error Response:**
 
   * **Code:** 404 Not found (if user with provided id doesn't exist)
-  * **Message:** ``` Cannot find client with provided id ``` 
-<br/>
+    * Message: ``` Cannot find client with provided id ``` 
   * **Code:** 404 Not found (if order with provided id doesn't exist)
-  * **Message:** ``` Cannot find order with provided id ``` 
+    * Message: ``` Cannot find order with provided id ``` 
 
 
