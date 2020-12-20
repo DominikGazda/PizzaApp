@@ -5,6 +5,7 @@ import pl.pizzeria.components.pizza.Pizza;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="toppings")
@@ -64,10 +65,18 @@ public class Toppings {
     }
 
     @Override
-    public String toString() {
-        return "Toppings{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price ;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Toppings toppings = (Toppings) o;
+        return Double.compare(toppings.price, price) == 0 &&
+                Objects.equals(id, toppings.id) &&
+                Objects.equals(name, toppings.name) &&
+                Objects.equals(pizza, toppings.pizza);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, pizza);
     }
 }

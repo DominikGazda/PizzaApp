@@ -53,18 +53,4 @@ public class ClientControllerMvc {
         redirectAttributes.addFlashAttribute("waiter",kelner);
         return "redirect:/zamowienie/podsumowanie";
     }
-/*
-    @GetMapping("/zamowienie/podsumowanie")
-    public String orderSummary(Model model, RedirectAttributes redirectAttributes){
-        Integer id = (Integer) model.getAttribute("waiter");
-        if(id == null){
-            redirectAttributes.addFlashAttribute("errorMessage","Nie znaleziono kelnera");
-            return "redirect:/error";
-        }
-        Optional<Waiter> waiter = waiterRepository.findById(Long.valueOf(id));
-        model.addAttribute("menuPizza",menuPizzaComponent.getMenuPizzaList());
-        model.addAttribute("data", LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.MEDIUM)));
-        model.addAttribute("waiter",waiter.get());
-        return "orderSummary";
-    }*/
 }

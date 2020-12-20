@@ -1,27 +1,16 @@
 package pl.pizzeria.components.order.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.pizzeria.components.client.Client;
-import pl.pizzeria.components.client.ClientRepository;
-import pl.pizzeria.components.client.rest.ClientMapper;
-import pl.pizzeria.components.client.rest.exception.ClientNotFoundException;
-import pl.pizzeria.components.common.InvalidDataException;
 import pl.pizzeria.components.menuPizza.MenuPizza;
-import pl.pizzeria.components.menuPizza.MenuPizzaRepository;
-import pl.pizzeria.components.menuPizza.exception.MenuPizzaNotFoundException;
 import pl.pizzeria.components.menuPizza.rest.MenuPizzaMapper;
-import pl.pizzeria.components.menuPizza.rest.MenuPizzaPizzaMapper;
-import pl.pizzeria.components.menuPizza.rest.MenuPizzaResource;
 import pl.pizzeria.components.order.Order;
 import pl.pizzeria.components.order.OrderStatus;
 import pl.pizzeria.components.waiter.Waiter;
 import pl.pizzeria.components.waiter.WaiterRepository;
-import pl.pizzeria.components.waiter.exception.WaiterNotFoundException;
+import pl.pizzeria.components.waiter.exceptions.WaiterNotFoundException;
 
 import javax.persistence.EntityManager;
-import java.sql.Date;
 import java.util.Optional;
 
 

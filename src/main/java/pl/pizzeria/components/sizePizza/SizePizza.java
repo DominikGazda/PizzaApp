@@ -5,6 +5,7 @@ import pl.pizzeria.components.menuPizza.MenuPizza;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="pizza_size")
@@ -65,5 +66,21 @@ public class SizePizza {
 
     public void addMenuPizzaList(MenuPizza menuPizza){
         menuPizzaList.add(menuPizza);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SizePizza sizePizza = (SizePizza) o;
+        return Double.compare(sizePizza.toppingDoublePrice, toppingDoublePrice) == 0 &&
+                Objects.equals(id, sizePizza.id) &&
+                Objects.equals(size, sizePizza.size) &&
+                Objects.equals(menuPizzaList, sizePizza.menuPizzaList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, size, toppingDoublePrice, menuPizzaList);
     }
 }

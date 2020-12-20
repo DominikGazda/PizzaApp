@@ -5,6 +5,7 @@ import pl.pizzeria.components.order.Order;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="waiters")
@@ -65,5 +66,21 @@ public class Waiter {
 
     public void addOrder(Order order){
         orders.add(order);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Waiter waiter = (Waiter) o;
+        return Objects.equals(id, waiter.id) &&
+                Objects.equals(name, waiter.name) &&
+                Objects.equals(surname, waiter.surname) &&
+                Objects.equals(orders, waiter.orders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, orders);
     }
 }

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "clients")
@@ -68,5 +69,21 @@ public class Client {
     public void addOrder(Order order){
         order.setClient(this);
         orders.add(order);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(id, client.id) &&
+                Objects.equals(clientName, client.clientName) &&
+                Objects.equals(clientSurname, client.clientSurname) &&
+                Objects.equals(orders, client.orders);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, clientName, clientSurname, orders);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.pizzeria.components.client.rest.ClientOrderDto;
 import pl.pizzeria.components.menuPizza.rest.MenuPizzaDto;
 import pl.pizzeria.components.menuPizza.rest.MenuPizzaOrderDto;
+import pl.pizzeria.components.order.Order;
+import pl.pizzeria.components.order.OrderStatus;
 
 import java.net.URI;
 import java.util.List;
@@ -25,8 +27,10 @@ public class OrderResource {
     }
 
     @GetMapping("")
-    public List<OrderDto> getAllOrders(){
-        return orderService.findAllOrders();
+    public List<OrderDto> getAllOrders(@RequestParam(defaultValue = "0") Integer pageNo,
+                                       @RequestParam(defaultValue = "10") Integer pageSize,
+                                       @RequestParam(defaultValue = "id") String sortBy){
+        return orderService.findAllOrders(pageNo,pageSize,sortBy);
     }
 
     @PostMapping("")
@@ -82,6 +86,36 @@ public class OrderResource {
     @DeleteMapping("/{id}/client")
     public OrderClientDto deleteOrderClient(@PathVariable Long id, @RequestBody OrderClientDto dto){
         return orderService.deleteClientInOrder(dto);
+    }
+
+    @GetMapping("/{id}/waiter")
+    public OrderWaiterDto getWaiterInOrder(@PathVariable Long id){
+        return orderService.findWaiterInOrder(id);
+    }
+
+    @PostMapping("/{id}/waiter")
+    public ResponseEntity<OrderWaiterDto> saveWaiterInOrder(@PathVariable Long id, @RequestBody OrderWaiterDto dto){
+        if(!id.equals(dto.getOrderId()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Object must have same id as path variable");
+        OrderWaiterDto savedWaiterInOrder = orderService.saveWaiterInOrder(dto);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedWaiterInOrder.getOrderId())
+                .toUri();
+        return ResponseEntity.created(location).body(savedWaiterInOrder);
+
+    }
+
+    @DeleteMapping("/{id}/waiter")
+    public OrderWaiterDto deleteWaiterInOrder(@PathVariable Long id, @RequestBody OrderWaiterDto dto){
+        if(!id.equals(dto.getOrderId()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Object must have same id as path variable");
+        return orderService.deleteWaiterInOrder(dto);
+    }
+
+    @GetMapping("/search/findAllByStatus")
+    public List<OrderDto> getAllOrdersByStatus(@RequestParam (required = false) OrderStatus status){
+        return orderService.findOrdersBYStatus(status);
     }
 
 }

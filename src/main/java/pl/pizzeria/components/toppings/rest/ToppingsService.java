@@ -3,7 +3,7 @@ package pl.pizzeria.components.toppings.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pl.pizzeria.components.pizza.exception.PizzaToppingNotFoundException;
+import pl.pizzeria.components.pizza.exceptions.PizzaToppingNotFoundException;
 import pl.pizzeria.components.toppings.Toppings;
 import pl.pizzeria.components.toppings.ToppingsRepository;
 import pl.pizzeria.components.toppings.exceptions.ToppingsNotFoundException;

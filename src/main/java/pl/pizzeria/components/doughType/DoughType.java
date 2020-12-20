@@ -5,6 +5,7 @@ import pl.pizzeria.components.menuPizza.MenuPizza;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "dough_type")
@@ -65,5 +66,21 @@ public class DoughType {
 
     public void addMenuPizza(MenuPizza menuPizza){
         menuPizzaList.add(menuPizza);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DoughType doughType1 = (DoughType) o;
+        return Double.compare(doughType1.price, price) == 0 &&
+                Objects.equals(id, doughType1.id) &&
+                Objects.equals(doughType, doughType1.doughType) &&
+                Objects.equals(menuPizzaList, doughType1.menuPizzaList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, doughType, price, menuPizzaList);
     }
 }

@@ -1,5 +1,6 @@
-package pl.pizzeria.controller.web;
+package pl.pizzeria.components.order.mvc;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.pizzeria.components.order.OrderStatus;
 import pl.pizzeria.components.order.Order;
 import pl.pizzeria.components.order.OrderRepository;
+
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Controller
@@ -24,7 +27,7 @@ public class OrderPanelController {
     public String orderPanel(@RequestParam(required = false) OrderStatus status, Model model){
         List<Order>orders;
         if(status == null){
-            orders =  orderRepository.findAll();
+            orders = orderRepository.findAllWithoutPagination();
         }
         else{
             orders = orderRepository.findAllByStatus(status);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.waiter.Waiter;
 import pl.pizzeria.components.waiter.WaiterRepository;
-import pl.pizzeria.components.waiter.exception.WaiterNotFoundException;
+import pl.pizzeria.components.waiter.exceptions.WaiterNotFoundException;
 
 import java.util.List;
 import java.util.Optional;

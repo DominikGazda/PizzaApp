@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.client.Client;
 import pl.pizzeria.components.client.ClientRepository;
-import pl.pizzeria.components.client.rest.exception.ClientNotFoundException;
+import pl.pizzeria.components.client.exceptions.ClientNotFoundException;
 import pl.pizzeria.components.order.Order;
 import pl.pizzeria.components.order.OrderRepository;
 
@@ -40,17 +40,13 @@ public class ClientService {
 
     public ClientDto findClientById (Long id){
         Optional<Client> foundClient = clientRepository.findById(id);
-        Client client = foundClient.orElseThrow(() ->{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Cannot find client with provided id");
-        });
+        Client client = foundClient.orElseThrow(ClientNotFoundException::new);
         return ClientMapper.toDto(client);
     }
 
     public ClientDto updateClient(ClientDto clientDto){
         Optional<Client> foundClient = clientRepository.findById(clientDto.getId());
-        Client client = foundClient.orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Cannot find client with provided id");
-        });
+        Client client = foundClient.orElseThrow(ClientNotFoundException::new);
         return mapAndSaveUser(clientDto);
     }
 
@@ -62,9 +58,7 @@ public class ClientService {
 
     public ClientDto deleteClient(Long id){
         Optional<Client> foundClient = clientRepository.findById(id);
-        Client client = foundClient.orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Cannot find client with provided id");
-        });
+        Client client = foundClient.orElseThrow(ClientNotFoundException::new);
         clientRepository.delete(client);
         return ClientMapper.toDto(client);
     }
@@ -77,26 +71,9 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    /*public ClientOrderDto saveClientOrder(ClientOrderDto dto, Long id){
-        if(dto.getOrderId() != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Order cannot have id ");
-        Optional<Client> foundClient = clientRepository.findById(id);
-        Client client = foundClient.orElseThrow(() -> {
-            throw new InvalidDataException("Cannot find client with provided id");
-        });
-
-        //client.addOrder(clientOrderDtoMapper.toEntity(dto));
-        //System.out.println(client.getOrders().get(0).getDate());
-       // Client savedClient = clientRepository.save(client);
-        //dto.setOrderId((long)savedClient.getOrders().size());
-        return dto;
-    }*/
-
     public ClientOrderDto getClientOrderById(Long clientId, int orderId){
         Optional<Client> foundClient = clientRepository.findById(clientId);
-        Client client = foundClient.orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Cannot find client with provided id");
-        });
+        Client client = foundClient.orElseThrow(ClientNotFoundException::new);
         try {
             Order order = client.getOrders().get(orderId - 1);
             return clientOrderMapper.toDto(order);

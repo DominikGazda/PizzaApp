@@ -7,6 +7,7 @@ import pl.pizzeria.components.waiter.Waiter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name="orders")
@@ -98,5 +99,24 @@ public class Order implements Serializable {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return tableNumber == order.tableNumber &&
+                Objects.equals(id, order.id) &&
+                Objects.equals(date, order.date) &&
+                status == order.status &&
+                Objects.equals(client, order.client) &&
+                Objects.equals(waiter, order.waiter) &&
+                Objects.equals(menuPizza, order.menuPizza);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tableNumber, date, status, client, waiter, menuPizza);
     }
 }

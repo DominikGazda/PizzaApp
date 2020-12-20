@@ -1,6 +1,10 @@
 package pl.pizzeria.components.order.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +13,9 @@ import pl.pizzeria.components.client.Client;
 import pl.pizzeria.components.client.ClientRepository;
 import pl.pizzeria.components.order.Order;
 import pl.pizzeria.components.order.OrderRepository;
+import pl.pizzeria.components.order.OrderStatus;
 import pl.pizzeria.components.order.exceptions.OrderNotFoundException;
+import pl.pizzeria.components.waiter.Waiter;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -34,9 +40,10 @@ public class OrderService {
         this.clientRepository = clientRepository;
     }
 
-    public List<OrderDto> findAllOrders(){
-        return orderRepository.findAll()
-                .stream()
+    public List<OrderDto> findAllOrders(Integer pageNo, Integer pageSize, String sortBy){
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<Order> pageResult =  orderRepository.findAll(paging);
+        return pageResult.get()
                 .map(orderMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -95,10 +102,47 @@ public class OrderService {
         Optional<Order> optionalOrder = orderRepository.findById(dto.getOrderId());
         Order foundOrder = optionalOrder.orElseThrow(OrderNotFoundException::new);
         if(foundOrder.getClient() == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Object doesn't exists");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Order doesn't have assigned client");
         foundOrder.setClient(null);
         clientRepository.delete(createClientEntity(dto));
         return dto;
+    }
+
+    public OrderWaiterDto findWaiterInOrder(Long id){
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        Order foundOrder = optionalOrder.orElseThrow(OrderNotFoundException::new);
+        if(foundOrder.getWaiter() == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Order doesn't have assigned waiter");
+        return OrderWaiterMapper.toDto(foundOrder);
+    }
+
+    public OrderWaiterDto saveWaiterInOrder(OrderWaiterDto dto){
+        Optional<Order> optionalOrder = orderRepository.findById(dto.getOrderId());
+        Order foundOrder = optionalOrder.orElseThrow(OrderNotFoundException::new);
+        if(foundOrder.getWaiter() != null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Order already has assigned waiter");
+        Waiter waiterToSave = createWaiterEntity(dto);
+        foundOrder.setWaiter(waiterToSave);
+        Order savedOrder = orderRepository.save(foundOrder);
+        return OrderWaiterMapper.toDto(savedOrder);
+    }
+
+    public OrderWaiterDto deleteWaiterInOrder(OrderWaiterDto dto){
+        Optional<Order> optionalOrder = orderRepository.findById(dto.getOrderId());
+        Order foundOrder = optionalOrder.orElseThrow(OrderNotFoundException::new);
+        if(foundOrder.getWaiter() == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Order doesn't have assigned waiter");
+        foundOrder.setWaiter(null);
+        orderRepository.save(foundOrder);
+        return dto;
+    }
+
+    public List<OrderDto>findOrdersBYStatus(OrderStatus status){
+        if(status == null)
+            return findAllOrders(0,10,"id");
+        return orderRepository.findAllByStatus(status).stream()
+                .map(orderMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     private Client createClientEntity(OrderClientDto dto){
@@ -109,5 +153,12 @@ public class OrderService {
         return client;
     }
 
+    private Waiter createWaiterEntity(OrderWaiterDto dto){
+        Waiter waiter = new Waiter();
+        waiter.setId(dto.getWaiterId());
+        waiter.setName(dto.getWaiterName());
+        waiter.setSurname(dto.getWaiterSurname());
+        return waiter;
+    }
 
 }

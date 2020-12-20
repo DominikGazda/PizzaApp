@@ -1,4 +1,4 @@
-package pl.pizzeria.components.sizePizza.exception;
+package pl.pizzeria.components.sizePizza.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

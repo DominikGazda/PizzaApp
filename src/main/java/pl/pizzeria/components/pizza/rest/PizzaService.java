@@ -3,10 +3,9 @@ package pl.pizzeria.components.pizza.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import pl.pizzeria.components.common.InvalidDataException;
 import pl.pizzeria.components.pizza.Pizza;
 import pl.pizzeria.components.pizza.PizzaRepository;
-import pl.pizzeria.components.pizza.exception.PizzaNotFoundException;
+import pl.pizzeria.components.pizza.exceptions.PizzaNotFoundException;
 
 import java.util.List;
 import java.util.Optional;

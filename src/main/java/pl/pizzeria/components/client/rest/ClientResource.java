@@ -47,7 +47,6 @@ public class ClientResource {
     public ResponseEntity<ClientDto> updateClient(@RequestBody ClientDto clientDto,@PathVariable Long id){
         if(!clientDto.getId().equals(id))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated object must have same id as path variable");
-
         ClientDto updatedClient = clientService.updateClient(clientDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -65,20 +64,6 @@ public class ClientResource {
     public List<ClientOrderDto> getClientOrders(@PathVariable Long id){
         return clientService.getClientOrders(id);
     }
-
-    /*@PostMapping("/{id}/orders")
-    public ResponseEntity<ClientOrderDto> saveClientOrder(@PathVariable Long id, @RequestBody ClientOrderDto dto){
-        try{
-            ClientOrderDto savedClientOrder = clientService.saveClientOrder(dto,id);
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(savedClientOrder.getOrderId())
-                    .toUri();
-            return ResponseEntity.created(location).body(savedClientOrder);
-        }catch(InvalidDataException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
-        }
-    }*/
 
     @GetMapping("/{id}/orders/{orderId}")
     public ClientOrderDto getClientOrderById(@PathVariable Long id, @PathVariable int orderId){

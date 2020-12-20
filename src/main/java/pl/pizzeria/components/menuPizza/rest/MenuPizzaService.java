@@ -7,7 +7,7 @@ import pl.pizzeria.components.common.InvalidDataException;
 import pl.pizzeria.components.doughType.DoughType;
 import pl.pizzeria.components.menuPizza.MenuPizza;
 import pl.pizzeria.components.menuPizza.MenuPizzaRepository;
-import pl.pizzeria.components.menuPizza.exception.MenuPizzaNotFoundException;
+import pl.pizzeria.components.menuPizza.exceptions.MenuPizzaNotFoundException;
 import pl.pizzeria.components.pizza.Pizza;
 import pl.pizzeria.components.sizePizza.SizePizza;
 

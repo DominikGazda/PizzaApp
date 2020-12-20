@@ -2,7 +2,7 @@ package pl.pizzeria.components.sizePizza.rest;
 
 import org.springframework.stereotype.Service;
 import pl.pizzeria.components.sizePizza.SizePizzaRepository;
-import pl.pizzeria.components.sizePizza.exception.SizePizzaNotFoundException;
+import pl.pizzeria.components.sizePizza.exceptions.SizePizzaNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;

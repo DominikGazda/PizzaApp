@@ -1,10 +1,8 @@
 package pl.pizzeria.components.doughType.rest;
 
 import org.springframework.stereotype.Service;
-import pl.pizzeria.components.common.InvalidDataException;
-import pl.pizzeria.components.doughType.DoughType;
 import pl.pizzeria.components.doughType.DoughTypeRepository;
-import pl.pizzeria.components.doughType.exception.DoughTypeNotFoundException;
+import pl.pizzeria.components.doughType.exceptions.DoughTypeNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -2,7 +2,7 @@ package pl.pizzeria.components.pizza.rest;
 
 import org.springframework.stereotype.Service;
 import pl.pizzeria.components.pizza.Pizza;
-import pl.pizzeria.components.pizza.exception.PizzaToppingNotFoundException;
+import pl.pizzeria.components.pizza.exceptions.PizzaToppingNotFoundException;
 import pl.pizzeria.components.toppings.Toppings;
 import pl.pizzeria.components.toppings.ToppingsRepository;
 
