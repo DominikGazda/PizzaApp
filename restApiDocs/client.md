@@ -68,10 +68,10 @@ none
 
   * **Code:** 400 Bad Request (if user has id)
   * **Message:** ```User cannot have id ```
-  <br/>
+
   * **Code:** 400 Bad Request  (if empty clientName field)
   * **Message:** ```Name cannot be empty```
-  <br/>
+
   * **Code:** 400 Bad Request (if empty clientSurname field)
   * **Message:** ```Surname cannot be empty```
  
@@ -135,10 +135,9 @@ none
 
   * **Code:** 400 Bad Request (if user has id different from id in path variable)
   * **Message:** ```Updated object must have same id as path variable ```
-  <br/>
   * **Code:** 400 Bad Request  (if id is null)
   * **Message:** ```Updated object must have an id```
-  <br/>
+
 ## Delete client by id
 ----
   Delete single user from database
