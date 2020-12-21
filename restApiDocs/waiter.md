@@ -90,7 +90,7 @@ none
 * **Method:**
   `GET`
 *  **URL Params**
-    `id=[Long}`
+    `id=[Long]`
 
 * **Success Response:**
 
@@ -116,7 +116,7 @@ none
 * **Method:**
   `PUT`
 *  **URL Params**
-    `id=[Long}`
+    `id=[Long]`
 
 * **JSON Request Body:**
 ``` 
@@ -150,7 +150,7 @@ none
 * **Method:**
   `DELETE`
 *  **URL Params**
-    `id=[Long}`
+    `id=[Long]`
 
 * **Success Response:**
 
@@ -176,7 +176,7 @@ none
 * **Method:**
   `GET`
 *  **URL Params**
-    `id=[Long}`
+    `id=[Long]`
 
 * **Success Response:**
 
