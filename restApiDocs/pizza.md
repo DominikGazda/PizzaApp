@@ -257,9 +257,4 @@ example url: /api/pizza/search/findByNameIgnoreCase?name=margheritta
 }
  ```  
 * **Error Response:**
-<<<<<<< Updated upstream
 ```No error response (returns empty list if pizzas don't exist)```
-=======
-
-```No error response (returns empty list if orders don't exist)```
->>>>>>> Stashed changes
