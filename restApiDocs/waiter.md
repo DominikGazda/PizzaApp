@@ -1,5 +1,5 @@
 
-# Toppings Rest Documentation
+# Waiter Rest Documentation
 
 ## Table of contents
 * [Show waiters](#show-waiters)
