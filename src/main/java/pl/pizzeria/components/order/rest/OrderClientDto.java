@@ -2,13 +2,17 @@ package pl.pizzeria.components.order.rest;
 
 import pl.pizzeria.components.client.rest.ClientDto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class OrderClientDto {
 
     private Long orderId;
     private Long clientId;
+    @NotEmpty(message = "{pl.pizzeria.components.order.rest.OrderDto.clientName.NotEmpty}")
     private String clientName;
+    @NotEmpty(message = "{pl.pizzeria.components.order.rest.OrderDto.clientSurname.NotEmpty}")
     private String clientSurname;
 
     public Long getOrderId() {

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.client.Client;
 import pl.pizzeria.components.client.ClientRepository;
@@ -51,7 +53,9 @@ public class OrderService {
     @Transactional
     public OrderDto save(OrderDto dto){
         if(dto.getOrderId() != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot add object with id");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot add order with id");
+        if(dto.getPizzaList().getId() != null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot add order with pizza list id");
        Order order = orderMapper.toEntity(dto);
        order.setMenuPizza(entityManager.merge(order.getMenuPizza()));
        order.setClient(entityManager.merge(order.getClient()));
@@ -143,6 +147,15 @@ public class OrderService {
         return orderRepository.findAllByStatus(status).stream()
                 .map(orderMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public void checkErrors(BindingResult result){
+        List<ObjectError> errors = result.getAllErrors();
+        String message = errors.stream()
+                .map(ObjectError::getDefaultMessage)
+                .map(String::toString)
+                .collect(Collectors.joining());
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);
     }
 
     private Client createClientEntity(OrderClientDto dto){

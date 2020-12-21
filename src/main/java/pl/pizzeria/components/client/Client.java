@@ -16,11 +16,11 @@ public class Client {
     @Column(name = "id_client")
     private Long id;
 
-    @NotEmpty(message = "{pl.pizzeria.components.client.Client.clientName.NotEmpty}")
+    @NotEmpty
     @Column(name="name")
     private String clientName;
 
-    @NotEmpty(message = "{pl.pizzeria.components.client.Client.clientSurname.NotEmpty}")
+    @NotEmpty
     @Column(name = "surname")
     private String clientSurname;
 

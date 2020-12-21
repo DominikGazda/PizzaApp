@@ -2,6 +2,8 @@ package pl.pizzeria.components.toppings.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.pizza.exceptions.PizzaToppingNotFoundException;
 import pl.pizzeria.components.toppings.Toppings;
@@ -38,7 +40,7 @@ public class ToppingsService {
 
     public ToppingsDto save(ToppingsDto dto){
         if(dto.getId() != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Object id must have same id as path variable");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Topping cannot have id");
         return mapAndSaveToppings(dto);
     }
 
@@ -52,16 +54,25 @@ public class ToppingsService {
         return ToppingsMapper.toDto(savedToppings);
     }
 
-    public ToppingsDto delete(ToppingsDto dto){
-        Optional<Toppings> toppings = toppingsRepository.findById(dto.getId());
+    public ToppingsDto delete(Long id){
+        Optional<Toppings> toppings = toppingsRepository.findById(id);
         Toppings toppingsToDelete = toppings.orElseThrow(ToppingsNotFoundException::new);
         toppingsRepository.delete(toppingsToDelete);
-        return dto;
+        return ToppingsMapper.toDto(toppingsToDelete);
     }
 
     public ToppingsPizzaDto findPizzaWithToppings(Long id){
        return  toppingsRepository.findById(id)
                 .map(toppingsPizzaMapper::toDto)
                 .orElseThrow(ToppingsNotFoundException::new);
+    }
+
+    public void checkErrors(BindingResult result){
+        List<ObjectError> errors = result.getAllErrors();
+        String message = errors.stream()
+                .map(ObjectError::getDefaultMessage)
+                .map(String::toString)
+                .collect(Collectors.joining());
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);
     }
 }

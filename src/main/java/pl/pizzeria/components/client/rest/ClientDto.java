@@ -10,7 +10,9 @@ import java.util.List;
 public class ClientDto {
 
     private Long id;
+    @NotEmpty(message = "{pl.pizzeria.components.client.rest.ClientDto.clientName.NotEmpty}")
     private String clientName;
+    @NotEmpty(message = "{pl.pizzeria.components.client.rest.ClientDto.clientSurname.NotEmpty}")
     private String clientSurname;
 
     public Long getId() {

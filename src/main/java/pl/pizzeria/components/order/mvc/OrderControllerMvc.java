@@ -3,6 +3,8 @@ package pl.pizzeria.components.order.mvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.pizzeria.components.client.Client;
@@ -22,6 +24,7 @@ import pl.pizzeria.components.sizePizza.SizePizzaRepository;
 import pl.pizzeria.components.waiter.Waiter;
 import pl.pizzeria.components.waiter.WaiterRepository;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;

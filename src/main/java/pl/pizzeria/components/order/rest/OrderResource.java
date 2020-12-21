@@ -3,15 +3,13 @@ package pl.pizzeria.components.order.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import pl.pizzeria.components.client.rest.ClientOrderDto;
-import pl.pizzeria.components.menuPizza.rest.MenuPizzaDto;
-import pl.pizzeria.components.menuPizza.rest.MenuPizzaOrderDto;
-import pl.pizzeria.components.order.Order;
 import pl.pizzeria.components.order.OrderStatus;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -34,7 +32,9 @@ public class OrderResource {
     }
 
     @PostMapping("")
-    public ResponseEntity<OrderDto> saveOrder(@RequestBody OrderDto dto){
+    public ResponseEntity<OrderDto> saveOrder(@Valid @RequestBody OrderDto dto, BindingResult result){
+        if(result.hasErrors())
+            orderService.checkErrors(result);
         OrderDto savedOrder = orderService.save(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -50,9 +50,11 @@ public class OrderResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDto> updateOrder(@PathVariable Long id, @RequestBody OrderDto dto){
+    public ResponseEntity<OrderDto> updateOrder(@PathVariable Long id,@Valid @RequestBody OrderDto dto, BindingResult result){
+        if(result.hasErrors())
+            orderService.checkErrors(result);
         if(!id.equals(dto.getOrderId()))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated object must have same id as in path variable");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated order must have same id as in path variable");
         OrderDto updatedOrder = orderService.update(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -72,7 +74,9 @@ public class OrderResource {
     }
 
     @PostMapping("/{id}/client")
-    public ResponseEntity<OrderClientDto> saveOrderClient(@PathVariable Long id, @RequestBody OrderClientDto orderClientDto){
+    public ResponseEntity<OrderClientDto> saveOrderClient(@PathVariable Long id,@Valid @RequestBody OrderClientDto orderClientDto, BindingResult result){
+        if(result.hasErrors())
+            orderService.checkErrors(result);
         if(!id.equals(orderClientDto.getOrderId()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Object must have same id as in path variable");
         OrderClientDto savedOrderClient = orderService.saveClientInOrder(orderClientDto);
@@ -94,7 +98,9 @@ public class OrderResource {
     }
 
     @PostMapping("/{id}/waiter")
-    public ResponseEntity<OrderWaiterDto> saveWaiterInOrder(@PathVariable Long id, @RequestBody OrderWaiterDto dto){
+    public ResponseEntity<OrderWaiterDto> saveWaiterInOrder(@PathVariable Long id,@Valid @RequestBody OrderWaiterDto dto, BindingResult result){
+        if(result.hasErrors())
+            orderService.checkErrors(result);
         if(!id.equals(dto.getOrderId()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Object must have same id as path variable");
         OrderWaiterDto savedWaiterInOrder = orderService.saveWaiterInOrder(dto);

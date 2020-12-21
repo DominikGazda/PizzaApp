@@ -3,11 +3,13 @@ package pl.pizzeria.components.client.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.pizzeria.components.common.InvalidDataException;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -29,7 +31,9 @@ public class ClientResource {
     }
 
     @PostMapping("")
-    public ResponseEntity<ClientDto> saveClient(@RequestBody ClientDto dto){
+    public ResponseEntity<ClientDto> saveClient(@Valid @RequestBody ClientDto dto, BindingResult result){
+        if(result.hasErrors())
+            clientService.checkErrors(result);
         ClientDto savedClient = clientService.saveClient(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -44,7 +48,11 @@ public class ClientResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClientDto> updateClient(@RequestBody ClientDto clientDto,@PathVariable Long id){
+    public ResponseEntity<ClientDto> updateClient(@Valid @RequestBody ClientDto clientDto, BindingResult result, @PathVariable Long id){
+        if(result.hasErrors())
+            clientService.checkErrors(result);
+        if(clientDto.getId() == null)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated object must have an id");
         if(!clientDto.getId().equals(id))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated object must have same id as path variable");
         ClientDto updatedClient = clientService.updateClient(clientDto);

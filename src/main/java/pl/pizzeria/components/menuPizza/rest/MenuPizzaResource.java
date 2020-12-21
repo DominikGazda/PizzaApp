@@ -2,10 +2,12 @@ package pl.pizzeria.components.menuPizza.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -25,7 +27,9 @@ public class MenuPizzaResource {
     }
 
     @PostMapping("")
-    public ResponseEntity<MenuPizzaDto> saveMenuPizza(@RequestBody MenuPizzaDto dto) {
+    public ResponseEntity<MenuPizzaDto> saveMenuPizza(@Valid @RequestBody MenuPizzaDto dto, BindingResult result) {
+        if(result.hasErrors())
+            menuPizzaService.checkErrors(result);
         MenuPizzaDto savedMenu = menuPizzaService.save(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -40,9 +44,11 @@ public class MenuPizzaResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MenuPizzaDto> updateMenuPizza(@PathVariable Long id, @RequestBody MenuPizzaDto dto) {
+    public ResponseEntity<MenuPizzaDto> updateMenuPizza(@PathVariable Long id,@Valid @RequestBody MenuPizzaDto dto, BindingResult result) {
+        if(result.hasErrors())
+            menuPizzaService.checkErrors(result);
         if (!id.equals(dto.getId()))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Object id must be same as path variable");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Menu pizza id must be same as path variable");
         MenuPizzaDto updatedMenu = menuPizzaService.update(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")

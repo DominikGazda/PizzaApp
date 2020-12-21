@@ -2,6 +2,8 @@ package pl.pizzeria.components.menuPizza.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.common.InvalidDataException;
 import pl.pizzeria.components.doughType.DoughType;
@@ -58,7 +60,7 @@ public class MenuPizzaService {
     public MenuPizzaDto delete(Long id){
         Optional<MenuPizza> menuPizza = menuPizzaRepository.findById(id);
         MenuPizza menu = menuPizza.orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found object with provided id ");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found menu pizza with provided id ");
         });
         menuPizzaRepository.delete(menu);
         return menuPizzaMapper.toDto(menu);
@@ -69,13 +71,13 @@ public class MenuPizzaService {
                 .map(MenuPizza::getDoughType)
                 .map(DoughType::getDoughType)
                 .map(String::toString)
-                .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found object with provided id ");});
+                .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found menu pizza with provided id  ");});
     }
 
     public List<MenuPizzaOrderDto> findMenuPizzaOrders(Long id){
         return menuPizzaRepository.findById(id)
                 .map(MenuPizza::getOrders)
-                .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found object with provided id ");})
+                .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found menu pizza with provided id ");})
                 .stream()
                 .map(MenuPizzaOrderMapper::toDto)
                 .collect(Collectors.toList());
@@ -84,7 +86,7 @@ public class MenuPizzaService {
     public MenuPizzaPizzaDto findPizzaInMenuPizza(Long id){
         Pizza pizza =  menuPizzaRepository.findById(id)
                      .map(MenuPizza::getPizza)
-                     .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found object with provided id ");});
+                     .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found menu pizza with provided id");});
         return MenuPizzaPizzaMapper.toDto(pizza);
     }
 
@@ -93,7 +95,17 @@ public class MenuPizzaService {
                 .map(MenuPizza::getSizePizza)
                 .map(SizePizza::getSize)
                 .map(String::toString)
-                .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found object with provided id ");});
+                .orElseThrow(() ->{ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cannot found menu pizza with provided id ");});
 
     }
+
+    public void checkErrors(BindingResult result){
+        List<ObjectError> errors = result.getAllErrors();
+        String message = errors.stream()
+                .map(ObjectError::getDefaultMessage)
+                .map(String::toString)
+                .collect(Collectors.joining());
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);
+    }
+
 }

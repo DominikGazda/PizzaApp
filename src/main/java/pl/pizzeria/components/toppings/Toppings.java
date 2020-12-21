@@ -3,6 +3,7 @@ package pl.pizzeria.components.toppings;
 import pl.pizzeria.components.pizza.Pizza;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class Toppings {
     @Column(name = "id_topping")
     private Long id;
 
+    @NotNull
     @Column(name = "topping_name", nullable = false)
     private String name;
 

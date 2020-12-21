@@ -2,6 +2,8 @@ package pl.pizzeria.components.pizza.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.pizza.Pizza;
 import pl.pizzeria.components.pizza.PizzaRepository;
@@ -66,6 +68,15 @@ public class PizzaService {
         return pizzaRepository.findByNameIgnoreCase(name)
                 .map(pizzaMapper::toDto)
                 .orElseThrow(PizzaNotFoundException::new);
+    }
+
+    public void checkErrors(BindingResult result){
+        List<ObjectError> errors = result.getAllErrors();
+        String message = errors.stream()
+                .map(ObjectError::getDefaultMessage)
+                .map(String::toString)
+                .collect(Collectors.joining());
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);
     }
 
 }

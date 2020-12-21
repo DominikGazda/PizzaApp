@@ -1,10 +1,12 @@
 package pl.pizzeria.components.pizza.rest;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class PizzaDto {
 
     private Long id;
+    @NotEmpty(message = "{pl.pizzeria.components.pizza.rest.PizzaDto.name.NotEmpty}")
     private String name;
     private String imageUrl;
     private List<String> toppingsList;

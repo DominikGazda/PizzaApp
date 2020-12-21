@@ -1,9 +1,13 @@
 package pl.pizzeria.components.waiter.rest;
 
+import javax.validation.constraints.NotEmpty;
+
 public class WaiterDto {
 
     private Long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String surname;
 
     public Long getId() {

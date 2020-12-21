@@ -3,6 +3,7 @@ package pl.pizzeria.components.sizePizza;
 import pl.pizzeria.components.menuPizza.MenuPizza;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class SizePizza {
     @Column(name="id_pizza_size")
     private Long id;
 
+    @NotEmpty(message = "{pl.pizzeria.components.sizePizza.SizePizza.size.NotEmpty}")
     @Column(name = "size_name", nullable = false)
     private String size;
 

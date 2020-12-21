@@ -3,6 +3,7 @@ package pl.pizzeria.components.doughType;
 import pl.pizzeria.components.menuPizza.MenuPizza;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,6 @@ public class DoughType {
     private Long id;
 
     @Column(name="dough_type")
-
     private String doughType;
 
     private double price;

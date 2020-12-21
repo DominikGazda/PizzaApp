@@ -3,10 +3,12 @@ package pl.pizzeria.components.toppings.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -27,7 +29,9 @@ public class ToppingsResource {
     }
 
     @PostMapping("")
-    public ResponseEntity<ToppingsDto> saveToppings(@RequestBody ToppingsDto toppingsDto){
+    public ResponseEntity<ToppingsDto> saveToppings(@Valid @RequestBody ToppingsDto toppingsDto, BindingResult result){
+        if(result.hasErrors())
+            toppingsService.checkErrors(result);
         ToppingsDto savedToppings = toppingsService.save(toppingsDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -42,15 +46,17 @@ public class ToppingsResource {
     }
 
     @PutMapping("/{id}")
-    public ToppingsDto updateToppings(@PathVariable Long id, @RequestBody ToppingsDto dto){
+    public ToppingsDto updateToppings(@PathVariable Long id,@Valid @RequestBody ToppingsDto dto, BindingResult result){
+        if(result.hasErrors())
+            toppingsService.checkErrors(result);
         if(!id.equals(dto.getId()))
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated object id must be same as path variable");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Updated topping id must be same as path variable");
         return toppingsService.update(dto);
     }
 
     @DeleteMapping("/{id}")
-    public ToppingsDto deleteToppings(@PathVariable ToppingsDto dto){
-        return toppingsService.delete(dto);
+    public ToppingsDto deleteToppings(@PathVariable Long id){
+        return toppingsService.delete(id);
     }
 
     @GetMapping("/{id}/pizza")

@@ -2,6 +2,8 @@ package pl.pizzeria.components.client.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.server.ResponseStatusException;
 import pl.pizzeria.components.client.Client;
 import pl.pizzeria.components.client.ClientRepository;
@@ -80,6 +82,15 @@ public class ClientService {
         }catch(IndexOutOfBoundsException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Cannot find order with provided id");
         }
+    }
+
+    public void checkErrors(BindingResult result){
+        List<ObjectError> errors = result.getAllErrors();
+        String message = errors.stream()
+                .map(ObjectError::getDefaultMessage)
+                .map(String::toString)
+                .collect(Collectors.joining());
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);
     }
 
 }

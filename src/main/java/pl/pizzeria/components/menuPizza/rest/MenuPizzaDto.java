@@ -1,6 +1,16 @@
 package pl.pizzeria.components.menuPizza.rest;
 
+import javax.validation.constraints.NotEmpty;
+
 public class MenuPizzaDto {
+
+    private Long id;
+    @NotEmpty(message = "{pl.pizzeria.components.menuPizza.rest.MenuPizzaDto.pizzaName.NotEmpty}")
+    private String pizzaName;
+    @NotEmpty(message = "{pl.pizzeria.components.menuPizza.rest.MenuPizzaDto.pizzaSize.NotEmpty}")
+    private String pizzaSize;
+    @NotEmpty(message = "{pl.pizzeria.components.menuPizza.rest.MenuPizzaDto.doughType.NotEmpty}")
+    private String doughType;
 
     public Long getId() {
         return id;
@@ -9,11 +19,6 @@ public class MenuPizzaDto {
     public void setId(Long id) {
         this.id = id;
     }
-
-    private Long id;
-    private String pizzaName;
-    private String pizzaSize;
-    private String doughType;
 
     public String getPizzaName() {
         return pizzaName;

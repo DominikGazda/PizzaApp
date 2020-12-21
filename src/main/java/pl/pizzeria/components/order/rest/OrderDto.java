@@ -4,6 +4,9 @@ import pl.pizzeria.components.menuPizza.MenuPizza;
 import pl.pizzeria.components.menuPizza.rest.MenuPizzaDto;
 import pl.pizzeria.components.pizza.rest.PizzaDto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,14 +14,23 @@ import java.util.List;
 public class OrderDto {
 
     private Long orderId;
+    @NotNull(message = "{pl.pizzeria.components.order.rest.OrderDto.clientId.NotNull}")
     private Long clientId;
+    @NotEmpty(message = "{pl.pizzeria.components.order.rest.OrderDto.clientName.NotEmpty}")
     private String clientName;
+    @NotEmpty(message = "{pl.pizzeria.components.order.rest.OrderDto.clientSurname.NotEmpty}")
     private String clientSurname;
+    @NotNull(message = "{pl.pizzeria.components.order.rest.OrderDto.pizzaList.NotNull}")
     private MenuPizzaDto pizzaList;
+    @NotNull(message = "{pl.pizzeria.components.order.rest.OrderDto.waiterId.NotNull}")
     private Long waiterId;
+    @NotEmpty(message = "{pl.pizzeria.components.order.rest.OrderDto.waiterName.NotEmpty}")
     private String waiterName;
+    @NotEmpty(message = "{pl.pizzeria.components.order.rest.OrderDto.waiterSurname.NotEmpty}")
     private String waiterSurname;
+    @Min(1)
     private int deskNumber;
+    @NotNull(message = "{pl.pizzeria.components.order.rest.OrderDto.dateTime.NotNull}")
     private Date dateTime;
 
     public Long getClientId() {
