@@ -5,7 +5,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#Features)
-
+* [Rest documentation](#rest-documentation)
 ## General info
 By using this application we can order pizza in local restaurant. Additionally application has an staff panel which employee can use to change the order status.
 	
