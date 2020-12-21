@@ -120,7 +120,7 @@ none
 
   * **Code:** 404 Not found (if pizza with provided id doesn't exist)
     * Message: ``` Cannot find pizza with provided id ``` 
-## Update pizza menu by id
+## Update pizza by id
 
   Update single pizza data
 
