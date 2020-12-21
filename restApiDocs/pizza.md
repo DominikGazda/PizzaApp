@@ -40,7 +40,7 @@ none
 ]
  ```  
 * **Error Response:**
-```No error response (returns empty list if waiters don't exist)```
+```No error response (returns empty list if pizzas don't exist)```
 
 ## Save pizza
 
@@ -257,6 +257,4 @@ example url: /api/pizza/search/findByNameIgnoreCase?name=margheritta
 }
  ```  
 * **Error Response:**
-
-  * **Code:** 404 Not found (if  pizza with provided id doesn't exist)
-    * Message: ``` Cannot find pizza with provided id``` 
+```No error response (returns empty list if pizzas don't exist)```
