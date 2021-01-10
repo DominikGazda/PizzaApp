@@ -6,6 +6,7 @@
 * [Setup](#setup)
 * [Features](#Features)
 * [Rest documentation](#rest-documentation)
+* [Database schema](#database-schema)
 ## General info
 By using this application we can order pizza in local restaurant. Additionally application has an staff panel which employee can use to change the order status.
 	
@@ -61,3 +62,5 @@ http://localhost:8080/zamowienia/panel
 *  [Size Pizza entity](/restApiDocs/sizePizza.md)
 *  [Dough Type entity](/restApiDocs/doughType.md)
 
+## Database schema
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/database_schema.png" alt="schema" width="1030" height= "820"/>
