@@ -4,12 +4,38 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Features](#Features)
+* [General features](#general-features)
 * [Rest documentation](#rest-documentation)
 * [Database schema](#database-schema)
 ## General info
 By using this application we can order pizza in local restaurant. Additionally application has an staff panel which employee can use to change the order status.
-	
+
+# Main Page
+## Features
+* Add pizza to order
+* Delete pizza from order
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/main.png"/>
+
+# Pizza details
+## Features
+* Choose pizza size
+* Choose pizza dough type
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/pizza-details.png"/>
+
+# Order summary
+## Features
+* Show order details
+* Show which waiter was assigned to the order
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/pizza-details.png"/>
+
+# Success Page
+## If everything is fine you will see success site 
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/success.png"/>
+
+# Error Page
+## If something went wrong you will see error site
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/error.png"/>
+
 ## Technologies
 Project is created with:
 * Java 11
@@ -47,7 +73,7 @@ http://localhost:8080/h2-console
 ```
 http://localhost:8080/zamowienia/panel
 ```
-## Features
+## General features
 
 * order pizza by using application in local restaurant
 * use staff panel to change order status  `(http://localhost:8080/zamowienia/panel) `
