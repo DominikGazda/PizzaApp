@@ -36,6 +36,20 @@ By using this application we can order pizza in local restaurant. Additionally a
 ## If something went wrong you will see error site
 <img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/error.png"/>
 
+# Staff panel
+## Features
+* Change order status to IN_PROGRESS or COMPLETE
+* Filter orders by status
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/order-panel.png"/>
+
+# Staff panel example
+## Orders with changes status
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/order-panel-example.png"/>
+
+# Staff panel filter example
+## Orders filtered by COMPLETE status
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/order-panel-filter.png"/>
+
 ## Technologies
 Project is created with:
 * Java 11
