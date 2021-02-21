@@ -78,5 +78,4 @@ public class WaiterService {
                 .collect(Collectors.joining());
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST,message);
     }
-
 }
