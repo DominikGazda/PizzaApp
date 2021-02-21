@@ -26,7 +26,7 @@ By using this application we can order pizza in local restaurant. Additionally a
 ## Features
 * Show order details
 * Show which waiter was assigned to the order
-<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/pizza-details.png"/>
+<img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/summary.png"/>
 
 # Success Page
 ## If everything is fine you will see success site 
