@@ -43,7 +43,7 @@ By using this application we can order pizza in local restaurant. Additionally a
 <img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/order-panel.png"/>
 
 # Staff panel example
-## Orders with changes status
+## Orders with changed status
 <img src="https://github.com/DominikGazda/PizzaApp/blob/main/img/order-panel-example.png"/>
 
 # Staff panel filter example
